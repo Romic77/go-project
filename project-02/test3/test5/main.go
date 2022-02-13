@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	logger := logger.NewLog()
+	logger := logger.NewLog("info")
 	logger.Debug("这是一条Debug日志")
 	logger.Info("这是一条Info日志")
 	logger.Error("这是一条Error日志")
