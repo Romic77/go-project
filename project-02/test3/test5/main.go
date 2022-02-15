@@ -4,13 +4,18 @@ import (
 	"go-project/project-02/test3/test5/logger"
 	"log"
 	"os"
+	"time"
 )
 
 func main() {
-	logger := logger.NewLog("info")
-	logger.Debug("这是一条Debug日志")
-	logger.Info("这是一条Info日志")
-	logger.Error("这是一条Error日志")
+	for {
+		logger := logger.NewLog("info")
+		logger.Debug("这是一条Debug日志")
+		logger.Info("这是一条Info日志")
+		logger.Error("这是一条Error日志")
+		//每5秒打印日志
+		time.Sleep(time.Duration(5) * time.Second)
+	}
 }
 
 //测试往console打印日志
