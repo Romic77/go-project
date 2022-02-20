@@ -10,15 +10,15 @@ import (
 )
 
 type MysqlConfig struct {
-	Address  string
-	Port     int
-	Username string
-	Password string
+	Address  string `ini:"address"`
+	Port     int    `ini:"port"`
+	Username string `ini:"username"`
+	Password string `ini:"password"`
 }
 
 func loadInit(c interface{}) {
 	//打开文件
-	file, err := os.Open("./mysql.ini")
+	file, err := os.Open("./config.ini")
 	if err != nil {
 		fmt.Printf("open file error,%v\n", err)
 		return
@@ -45,8 +45,7 @@ func loadInit(c interface{}) {
 		//打印行信息
 		fmt.Println(line)
 		split := strings.Split(line, "=")
-		fmt.Println(split[0], split[1])
-		//reflectMysqlConfig(c, split)
+		reflectMysqlConfig(c, split)
 	}
 }
 
@@ -60,7 +59,7 @@ func reflectMysqlConfig(c interface{}, split []string) {
 	newConfig := reflect.New(config)
 	if split[0] == "Address" {
 		newConfig.Elem().FieldByName("Address").SetString(split[1])
-		fmt.Println(newConfig.Elem().FieldByName("Address").String())
+		//fmt.Println(newConfig.Elem().FieldByName("Address").String())
 	}
 
 	/*for i := 0; i < newConfig.Elem().NumField(); i++ {
@@ -73,8 +72,8 @@ func reflectMysqlConfig(c interface{}, split []string) {
 
 func main() {
 	var config MysqlConfig
-	str := []string{"Address", "127.0.0.1"}
-	reflectMysqlConfig(&config, str)
-	//loadInit(&config)
-	//fmt.Println(config.Address, config.Port, config.Username, config.Password)
+	/*str := []string{"Address", "127.0.0.1"}
+	reflectMysqlConfig(&config, str)*/
+	loadInit(&config)
+	fmt.Println(config.Address, config.Port, config.Username, config.Password)
 }

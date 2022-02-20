@@ -7,8 +7,8 @@ import (
 )
 
 type person struct {
-	Name string `json:name`
-	Age  int    `json:age`
+	Name string `json:"name"`
+	Age  int    `json:"age"`
 }
 
 func main() {
@@ -36,17 +36,18 @@ func main() {
 		Name:  "张三",
 		Score: 50,
 	}
-	//获取t的类型
+	//获取t的类型,这里传递的是真实的值
+	//如果传递的是指针就需要加t.Elem()
 	t := reflect.TypeOf(stu1)
 	fmt.Println(t.Name(), t.Kind())
 
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
-		fmt.Printf("name %s index:%d type:%v json tag :%v\n", field.Name, field.Index, field.Type, field.Tag.Get("json"))
+		fmt.Printf("name %s index:%d type %v json tag %v\n", field.Name, field.Index, field.Type, field.Tag.Get("json"))
 	}
 
 	if scoreField, ok := t.FieldByName("Score"); ok {
-		fmt.Printf("name %s index:%d type:%v json tag :%v\n", scoreField.Name, scoreField.Index, scoreField.Type, scoreField.Tag.Get("json"))
+		fmt.Printf("name %s index:%d type %v json tag %v\n", scoreField.Name, scoreField.Index, scoreField.Type, scoreField.Tag.Get("json"))
 	}
 
 }
