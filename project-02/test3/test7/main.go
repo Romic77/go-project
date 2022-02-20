@@ -18,7 +18,7 @@ type MysqlConfig struct {
 
 func loadInit(c interface{}) {
 	//打开文件
-	file, err := os.Open("./config.ini")
+	file, err := os.Open("./mysql.ini")
 	if err != nil {
 		fmt.Printf("open file error,%v\n", err)
 		return
@@ -56,9 +56,10 @@ func reflectMysqlConfig(c interface{}, split []string) {
 	if config.Kind() == reflect.Ptr {
 		config = config.Elem()
 	}
-	newConfig := reflect.New(config)
+	//newConfig := reflect.New(config)
+	v := reflect.ValueOf(c)
 	if split[0] == "Address" {
-		newConfig.Elem().FieldByName("Address").SetString(split[1])
+		v.Elem().FieldByName("Address").SetString(split[1])
 		//fmt.Println(newConfig.Elem().FieldByName("Address").String())
 	}
 
@@ -75,5 +76,5 @@ func main() {
 	/*str := []string{"Address", "127.0.0.1"}
 	reflectMysqlConfig(&config, str)*/
 	loadInit(&config)
-	fmt.Println(config.Address, config.Port, config.Username, config.Password)
+	fmt.Println(config)
 }
