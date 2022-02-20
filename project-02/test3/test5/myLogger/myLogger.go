@@ -1,4 +1,4 @@
-package logger
+package myLogger
 
 import (
 	"fmt"
@@ -16,12 +16,12 @@ const (
 	ERROR
 )
 
-// Logger 构造函数
-type Logger struct {
+// ConsoleLogger 构造函数
+type ConsoleLogger struct {
 	logLevel LogLevel
 }
 
-func parseLogLevel(logLevel string) LogLevel {
+func ParseLogLevel(logLevel string) LogLevel {
 	switch strings.ToLower(logLevel) {
 	case "debug":
 		return DEBUG
