@@ -46,7 +46,6 @@ func producer(jobChan chan<- *job) {
 
 // 从jobChan中取出随机数计算各位数的和，将结果发送到resultChan
 func consumer(jobChan <-chan *job, resultChan chan<- *result) {
-	defer waitGroup.Done()
 	for {
 		//把通道里面值取出来，通道里面值是job的struct，所以用job接收
 		job := <-jobChan
