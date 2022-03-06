@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-project/project-02/http_demo/protocol"
 	"net"
 	"os"
 )
@@ -13,13 +14,16 @@ func main() {
 		fmt.Println("dial 127.0.0.1 failed,error: ", err)
 		return
 	}
-	//2. 发送数据
-	var msg string
-	if len(os.Args) < 2 {
-		msg = "hello world"
-	} else {
-		msg = os.Args[1]
+	for i := 0; i < 100; i++ {
+		//2. 发送数据
+		var msg string
+		if len(os.Args) < 2 {
+			msg = "hello world"
+		} else {
+			msg = os.Args[1]
+		}
+		encode, _ := protocol.Encode(msg)
+		conn.Write(encode)
 	}
-	conn.Write([]byte(msg))
-	conn.Close()
+	defer conn.Close()
 }

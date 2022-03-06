@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"go-project/project-02/http_demo/protocol"
+	"io"
 	"net"
 )
 
@@ -28,13 +31,18 @@ func main() {
 
 func doRequest(conn net.Conn) {
 	//与客户端通信
-	var tmp [128]byte
+	reader := bufio.NewReader(conn)
 	for {
-		n, err := conn.Read(tmp[:])
+		decode, err := protocol.Decode(reader)
+		if err == io.EOF {
+			return
+		}
+
 		if err != nil {
 			fmt.Println("read from conn failed,err:", err)
 			return
 		}
-		fmt.Println(string(tmp[:n]))
+
+		fmt.Println(decode)
 	}
 }
