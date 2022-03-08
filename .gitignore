@@ -22,6 +22,7 @@ cobertura.ser
 *.ipr
 *.iml
 *.iws
+*.exe
 
 # temp ignore
 logs/
