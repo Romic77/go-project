@@ -1,0 +1,4 @@
+mode: set
+go-project/project-02/split_test/split.go:7.43,10.16 3 1
+go-project/project-02/split_test/split.go:17.2,18.12 2 1
+go-project/project-02/split_test/split.go:10.16,16.3 3 1
