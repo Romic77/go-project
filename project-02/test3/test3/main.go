@@ -20,7 +20,7 @@ func main() {
 //ioUtil 读文件
 func readFromIoutil() {
 	//打开文件
-	file, err := ioutil.ReadFile("./main.go")
+	file, err := ioutil.ReadFile("./producer.go")
 	if err != nil {
 		fmt.Printf("open filed,err:%v\n", err)
 		return
@@ -32,7 +32,7 @@ func readFromIoutil() {
 //一行一行读使用bufio
 func readFromBuffio() {
 	//打开文件
-	file, err := os.Open("./main.go")
+	file, err := os.Open("./producer.go")
 	if err != nil {
 		fmt.Printf("open filed,err:%v\n", err)
 		return
@@ -58,7 +58,7 @@ func readFromBuffio() {
 
 func readFromFile1() {
 	//打开文件
-	file, err := os.Open("./main.go")
+	file, err := os.Open("./producer.go")
 	if err != nil {
 		fmt.Printf("open filed,err:%v\n", err)
 		return

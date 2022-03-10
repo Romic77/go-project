@@ -51,7 +51,7 @@ func printFileLog() {
 
 //日志切割案例
 func logSplit() {
-	fileObj, err := os.Open("./main.go")
+	fileObj, err := os.Open("./producer.go")
 	if err != nil {
 		fmt.Printf("open file failed,err:%v\n", err)
 	}
