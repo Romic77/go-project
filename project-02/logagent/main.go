@@ -7,6 +7,7 @@ import (
 	"logagent/etcd"
 	"logagent/kafka"
 	"logagent/taillog"
+	"logagent/utils"
 	"sync"
 	"time"
 )
@@ -33,10 +34,15 @@ func main() {
 		fmt.Printf("connection etcd error: %v\n", err)
 		return
 	}
-	fmt.Println("connect to etcd success")
+	fmt.Println("init etcd success")
+	ip, err := utils.GetOutBoundIP()
+	if err != nil {
+		panic(err)
+	}
+	etcdConfigKey := fmt.Sprintf(cfg.EtcdConfig.Key, ip)
 
 	//从etcd中获取日志收集的配置信息
-	logEntries, err := etcd.GetByKey(cfg.EtcdConfig.Key)
+	logEntries, err := etcd.GetByKey(etcdConfigKey)
 	if err != nil {
 		fmt.Printf("etcd getByKey failed: %v\n", err)
 		return
@@ -47,7 +53,7 @@ func main() {
 
 	newConfigChan := taillog.NewConfigChan()
 	waitgroup.Add(1)
-	go etcd.WatchByKey(cfg.EtcdConfig.Key, newConfigChan)
+	go etcd.WatchByKey(etcdConfigKey, newConfigChan)
 	waitgroup.Wait()
 
 }

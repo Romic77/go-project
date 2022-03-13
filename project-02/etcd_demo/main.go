@@ -37,7 +37,7 @@ func putWeb() {
 
 	//get
 	ctx, cancelFunc = context.WithTimeout(context.Background(), time.Second)
-	resp, errs := client.Get(ctx, "chenqi")
+	resp, errs := client.Get(ctx, "chenqi/192.168.5.102")
 	cancelFunc()
 	if errs != nil {
 		fmt.Printf("get to etcd error: %v\n", err)
