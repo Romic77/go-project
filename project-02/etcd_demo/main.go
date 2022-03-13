@@ -7,9 +7,13 @@ import (
 	"time"
 )
 
+var (
+	key = "chenqi/192.168.5.102"
+)
+
 func main() {
-	putWeb()
-	//putRedis()
+	//putWeb()
+	putRedis()
 	//DeleteRedis()
 	//client.Delete(context.Background(), "chenqi")
 }
@@ -28,7 +32,7 @@ func putWeb() {
 	//put insert+update
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Second)
 	value := `[{"path":"d:/tmp/web.log","topic":"web_log"}]`
-	_, err = client.Put(ctx, "chenqi", value)
+	_, err = client.Put(ctx, key, value)
 	cancelFunc()
 	if err != nil {
 		fmt.Printf("put to etcd error: %v\n", err)
@@ -37,7 +41,7 @@ func putWeb() {
 
 	//get
 	ctx, cancelFunc = context.WithTimeout(context.Background(), time.Second)
-	resp, errs := client.Get(ctx, "chenqi/192.168.5.102")
+	resp, errs := client.Get(ctx, key)
 	cancelFunc()
 	if errs != nil {
 		fmt.Printf("get to etcd error: %v\n", err)
@@ -64,7 +68,7 @@ func putRedis() {
 	//put insert+update
 	ctx, cancelFunc := context.WithTimeout(context.Background(), time.Second)
 	value := `[{"path":"d:/tmp/web.log","topic":"web_log"},{"path":"d:/tmp/redis.log","topic":"redis_log"}]`
-	_, err = client.Put(ctx, "chenqi", value)
+	_, err = client.Put(ctx, key, value)
 	cancelFunc()
 	if err != nil {
 		fmt.Printf("put to etcd error: %v\n", err)
@@ -73,7 +77,7 @@ func putRedis() {
 
 	//get
 	ctx, cancelFunc = context.WithTimeout(context.Background(), time.Second)
-	resp, errs := client.Get(ctx, "chenqi")
+	resp, errs := client.Get(ctx, key)
 	cancelFunc()
 	if errs != nil {
 		fmt.Printf("get to etcd error: %v\n", err)
@@ -100,5 +104,5 @@ func DeleteRedis() {
 
 	defer client.Close()
 
-	client.Delete(context.Background(), "chenqi")
+	client.Delete(context.Background(), key)
 }
