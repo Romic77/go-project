@@ -39,6 +39,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	//key的格式是：chenqi/192.168.5.102
 	etcdConfigKey := fmt.Sprintf(cfg.EtcdConfig.Key, ip)
 
 	//从etcd中获取日志收集的配置信息
