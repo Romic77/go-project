@@ -1,8 +1,9 @@
 package taillog
 
 import (
-	"fmt"
 	"github.com/hpcloud/tail"
+	"logagent/kafka"
+	"time"
 )
 
 var (
@@ -10,7 +11,22 @@ var (
 	LogChan chan string
 )
 
-func Init(fileName string) (err error) {
+type TailTask struct {
+	path     string
+	topic    string
+	instance *tail.Tail
+}
+
+func NewTailTask(path string, topic string) (tailObj *TailTask) {
+	tailObj = &TailTask{
+		path:  path,
+		topic: topic,
+	}
+	tailObj.Init()
+	return
+}
+
+func (t *TailTask) Init() {
 	config := tail.Config{
 		ReOpen:    true,
 		Follow:    true,
@@ -18,14 +34,24 @@ func Init(fileName string) (err error) {
 		MustExist: false,
 		Poll:      true,
 	}
-	tailObj, err = tail.TailFile(fileName, config)
-	if err != nil {
-		fmt.Println("tail file failed err:", err)
-		return err
-	}
-	return
+	t.instance, _ = tail.TailFile(t.path, config)
+	go t.run()
 }
 
-func ReadChan() chan *tail.Line {
-	return tailObj.Lines
+func (t *TailTask) ReadChan() chan *tail.Line {
+	return t.instance.Lines
+}
+
+func (t *TailTask) run() {
+	//1.读取日志
+	for {
+		select {
+		case line := <-t.instance.Lines:
+			//2.发送到kafka通道
+			//kafka.SentToKafka(t.topic, line.Text)
+			kafka.SendToChan(t.topic, line.Text)
+		default:
+			time.Sleep(time.Second)
+		}
+	}
 }
