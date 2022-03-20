@@ -30,10 +30,14 @@ require (
 	github.com/jcmturner/gofork v1.0.0 // indirect
 	github.com/jcmturner/gokrb5/v8 v8.4.2 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
+	github.com/josharian/intern v1.0.0 // indirect
 	github.com/klauspost/compress v1.14.4 // indirect
+	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/olivere/elastic/v7 v7.0.31 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.18.1 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	go.etcd.io/etcd v3.3.27+incompatible // indirect
 	go.uber.org/atomic v1.7.0 // indirect
@@ -43,7 +47,8 @@ require (
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect
-	google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55 // indirect
+	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
+	google.golang.org/grpc v1.33.2 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect
-	google.golang.org/grpc v1.26.0 // indirect
+	gopkg.in/ini.v1 v1.66.4 // indirect
 )

@@ -22,9 +22,9 @@ func main() {
 	fmt.Println("connect es success")
 
 	s1 := Student{
-		Name:    "romic",
-		Age:     30,
-		Married: true,
+		Name:    "chenqi",
+		Age:     40,
+		Married: false,
 	}
 	put, err := client.Index().Index("student").BodyJson(s1).Do(context.Background())
 	if err != nil {

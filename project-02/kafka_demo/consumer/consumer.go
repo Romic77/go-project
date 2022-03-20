@@ -5,6 +5,8 @@ import (
 	"github.com/Shopify/sarama"
 )
 
+// main
+// @Description: kafka 消费消息
 func main() {
 	consumer, err := sarama.NewConsumer([]string{"127.0.0.1:9092"}, nil)
 	if err != nil {
@@ -26,11 +28,12 @@ func main() {
 		}
 		defer pc.AsyncClose()
 
-		go func(partitionConsumer sarama.PartitionConsumer) {
+		go func(sarama.PartitionConsumer) {
 			for msg := range pc.Messages() {
-				fmt.Printf("Partition: %d Offset:%d Key:%v Value:%v", msg.Partition, msg.Offset, msg.Key, msg.Value)
+				fmt.Printf("Partition: %d Offset:%d Key:%v Value:%v\n", msg.Partition, msg.Offset, msg.Key, string(msg.Value))
 			}
 		}(pc)
 	}
 
+	select {}
 }
