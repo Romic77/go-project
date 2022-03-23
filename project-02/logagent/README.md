@@ -22,7 +22,7 @@
 
    双击`etcd.exe`
 
-## Logagent
+## logagent
 
 1. 启动`project-02/etcd_demo/main.go`，首先需要把kafka主题等相关信息存入etcd
 
@@ -31,3 +31,20 @@
 > value:	[{"path":"d:/tmp/web.log","topic":"web_log"},{"path":"d:/tmp/redis.log","topic":"redis_log"}]
 
 2. 启动`project-02/logagent/main.go`,创建d:/tmp/web.log、d:/tmp/redis.log日志文件
+
+## log_transfer
+
+1. 启动elasticsearch
+
+   双击`E:\Program Files\es-cluster\node-9201\bin\elasticsearch.bat`
+
+2. 启动`project-02/log_transfer/main.go`
+
+3. 启动kibana-7.8.0-windows-x86_64
+
+   双击`D:\迅雷下载\其他\kibana-7.8.0-windows-x86_64\bin\kibana.bat`
+
+4. 打开http://localhost:5601/app/kibana#/home
+
+5. kibana查看索引为web_log的日志
+6. 
