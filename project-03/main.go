@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type Login struct {
@@ -14,20 +13,11 @@ func main() {
 	//创建路由
 	r := gin.Default()
 
-	//JSON绑定
-	r.GET("/:username/:password", func(c *gin.Context) {
-		var uriBind Login
-		err := c.ShouldBindUri(&uriBind)
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-
-		if uriBind.User == "root" && uriBind.Password == "123456" {
-			c.JSON(http.StatusBadRequest, gin.H{"status": "ok", "msg": "登录成功！"})
-			return
-		}
+	r.LoadHTMLGlob("templates/*")
+	r.GET("/index", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{"title": "我的标题"})
 	})
+
 	//监听端口，默认8080
 	r.Run("0.0.0.0:8000")
 }
