@@ -24,7 +24,7 @@ type RedisConfig struct {
 }
 
 type Config struct {
-	MysqlConfig `ini:"mysql"`
+	MysqlConfig `ini:"mysql.sql"`
 	RedisConfig `ini:"redis"`
 }
 

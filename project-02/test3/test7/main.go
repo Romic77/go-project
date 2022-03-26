@@ -18,7 +18,7 @@ type MysqlConfig struct {
 
 func loadInit(c interface{}) {
 	//打开文件
-	file, err := os.Open("./mysql.ini")
+	file, err := os.Open("./mysql.sql.ini")
 	if err != nil {
 		fmt.Printf("open file error,%v\n", err)
 		return
@@ -39,7 +39,7 @@ func loadInit(c interface{}) {
 		}
 		line = strings.TrimSpace(line)
 
-		if line == "[mysql]" {
+		if line == "[mysql.sql]" {
 			continue
 		}
 		//打印行信息
