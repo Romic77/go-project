@@ -36,7 +36,7 @@ func main() {
 func initDB() (err error) {
 	dsn := "root:rootroot@tcp(127.0.0.1:3306)/golang"
 	//连接数据库
-	db, err = sqlx.Connect("mysql", dsn)
+	db, err = sqlx.Connect("mysql.sql", dsn)
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(5)
 	return

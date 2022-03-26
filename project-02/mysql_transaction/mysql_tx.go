@@ -30,7 +30,7 @@ func main() {
 func initDB() (err error) {
 	dsn := "root:rootroot@tcp(127.0.0.1:3306)/golang"
 	//连接数据库
-	db, err = sql.Open("mysql", dsn)
+	db, err = sql.Open("mysql.sql", dsn)
 	return
 }
 
