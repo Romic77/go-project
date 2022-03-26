@@ -1,4 +1,4 @@
-package session_demo
+package main
 
 type Session interface {
 	Set(key string, value interface{}) (err error)

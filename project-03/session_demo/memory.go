@@ -1,4 +1,4 @@
-package session_demo
+package main
 
 import (
 	"errors"
@@ -19,7 +19,7 @@ type MemorySession struct {
 // @description 创建MemorySession
 // @param id string
 // @return *MemorySession
-func NewMemorySession(id string) *MemorySession {
+func NewMemorySession(id string) Session {
 	return &MemorySession{
 		sessionId: id,
 		data:      make(map[string]interface{}, 16),
