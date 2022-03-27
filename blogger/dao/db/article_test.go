@@ -42,3 +42,13 @@ func TestInsertArticle(t *testing.T) {
 	}
 	fmt.Println("插入返回主键", articleId)
 }
+
+func TestGetArticleList(t *testing.T) {
+	articleList, _ := GetArticleList(1, 15)
+	if len(articleList) == 0 {
+		t.Fatal("查询结果集为0")
+	}
+	for _, article := range articleList {
+		t.Logf("%#v", article)
+	}
+}

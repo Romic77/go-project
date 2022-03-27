@@ -6,7 +6,7 @@ import "time"
 // @description 文章
 type Article struct {
 	Id           int64     `db:"id"`
-	CategoryId   int64     `db:"categoryId"`
+	CategoryId   int64     `db:"category_id"`
 	Title        string    `db:"title"`
 	Summary      string    `db:"summary"`
 	ViewCount    uint32    `db:"view_count"`
