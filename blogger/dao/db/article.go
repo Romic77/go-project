@@ -55,7 +55,7 @@ func GetArticleById(id int64) (article *model.Article, err error) {
 // @param pageSize int
 // @return articleList *[]model.Article
 // @return err error
-func GetArticleListByCategoryId(categoryId int64, pageNum int, pageSize int) (articleList *[]model.Article, err error) {
+func GetArticleListByCategoryId(categoryId int64, pageNum int, pageSize int) (articleList []*model.Article, err error) {
 	if pageNum < 0 || pageSize <= 0 {
 		log.Info("pageNum:{},pageSize:{}", pageNum, pageSize)
 		return
