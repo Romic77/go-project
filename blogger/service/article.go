@@ -31,6 +31,7 @@ func GetArticleRecordList(pageNum int, pageSize int) (articleRecordList []*model
 				break
 			}
 		}
+		articleRecordList = append(articleRecordList, articleObj)
 	}
 	return
 }
@@ -42,6 +43,7 @@ func GetArticleRecordList(pageNum int, pageSize int) (articleRecordList []*model
 // @return ids
 //
 func GetCategoryIds(articleList []*model.Article) (ids []int64) {
+LABEL:
 	//遍历文章
 	for _, article := range articleList {
 		//从当前文章取出分类id
@@ -49,9 +51,10 @@ func GetCategoryIds(articleList []*model.Article) (ids []int64) {
 		//去重 分类id如果一样只需要加载一次
 		for _, id := range ids {
 			if id != categoryId {
-				ids = append(ids, categoryId)
+				continue LABEL
 			}
 		}
+		ids = append(ids, categoryId)
 	}
 	return
 }

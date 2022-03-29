@@ -30,7 +30,7 @@ func GetArticleList(pageNum int, pageSize int) (articleList []*model.Article, er
 	sqlStr := `SELECT id,summary,title,view_count,comment_count,username,category_id,create_time FROM article 
 				where status = 1 order by create_time desc
 				limit ?,?`
-	err = db.Select(&articleList, sqlStr, pageNum-1, pageSize)
+	err = db.Select(&articleList, sqlStr, pageNum, pageSize)
 	if err != nil {
 		return nil, err
 	}

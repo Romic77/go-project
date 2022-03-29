@@ -44,7 +44,7 @@ func GetCategoryById(id int64) (category *model.Category, err error) {
 func GetCategoryListByIds(categoryIds []int64) (categoryList []*model.Category, err error) {
 	sqlStr := "select * from category where category.id in (?);"
 	sqlStr, args, err := sqlx.In(sqlStr, categoryIds)
-	err = db.Select(&categoryList, sqlStr, args)
+	err = db.Select(&categoryList, sqlStr, args...)
 	if err != nil {
 		return nil, err
 	}

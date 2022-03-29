@@ -11,7 +11,8 @@ var log = logging.MustGetLogger("blogger")
 
 func main() {
 	r := gin.Default()
-	driverSql := "root:rootroot@tcp://(127.0.0.1:3306)/blogger?parseTime=true"
+
+	driverSql := "root:rootroot@tcp(127.0.0.1:3306)/blogger?parseTime=true"
 	db.InitDB(driverSql)
 
 	//加载静态文件
