@@ -7,10 +7,10 @@ import (
 // InsertArticle
 // @description 插入文章
 func InsertArticle(articleDetail *model.ArticleDetail) (id int64, err error) {
-	sqlStr := `insert into article(category_id,content,title,view_count,comment_count,username,summary,create_time,update_time) 
+	sqlStr := `insert into article(category_id,content,title,view_count,comment_count,username,summary) 
                values(?,?,?,?,?,?,?,?,?)`
 	result, err := db.Exec(sqlStr, articleDetail.Article.CategoryId, articleDetail.Content, articleDetail.Article.Title, articleDetail.Article.ViewCount, articleDetail.Article.CommentCount,
-		articleDetail.Article.Username, articleDetail.Article.Summary, articleDetail.Article.CreateTime, articleDetail.Article.UpdateTime)
+		articleDetail.Article.Username, articleDetail.Article.Summary)
 	id, _ = result.LastInsertId()
 	return
 }

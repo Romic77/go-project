@@ -21,17 +21,17 @@ func GetArticleRecordList(pageNum int, pageSize int) (articleRecordList []*model
 
 	//返回页面 做聚合
 	for _, article := range articleList {
-		articleObj := &model.ArticleRecord{Article: *article}
+		articleRecord := &model.ArticleRecord{Article: *article}
 
-		categoryId := articleObj.CategoryId
+		categoryId := article.CategoryId
 
 		for _, category := range categoryList {
-			if categoryId == category.Id {
-				articleObj.Category = *category
+			if categoryId == category.CategoryId {
+				articleRecord.Category = *category
 				break
 			}
 		}
-		articleRecordList = append(articleRecordList, articleObj)
+		articleRecordList = append(articleRecordList, articleRecord)
 	}
 	return
 }
@@ -50,7 +50,7 @@ LABEL:
 		categoryId := article.CategoryId
 		//去重 分类id如果一样只需要加载一次
 		for _, id := range ids {
-			if id != categoryId {
+			if id == categoryId {
 				continue LABEL
 			}
 		}
@@ -80,10 +80,10 @@ func GetArticleListById(categoryId int64, pageNum int, pageSize int) (articleRec
 	for _, article := range articleList {
 		articleObj := &model.ArticleRecord{Article: *article}
 
-		categoryId := articleObj.CategoryId
+		categoryId := article.CategoryId
 
 		for _, category := range categoryList {
-			if categoryId == category.Id {
+			if categoryId == category.CategoryId {
 				articleObj.Category = *category
 				break
 			}

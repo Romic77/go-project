@@ -28,7 +28,7 @@ func TestInsertArticle(t *testing.T) {
 		},
 		Content: "",
 		Category: model.Category{
-			Id:           1,
+			CategoryId:   1,
 			CategoryName: "",
 			CategoryNo:   0,
 			CreateTime:   time.Time{},

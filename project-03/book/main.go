@@ -56,7 +56,7 @@ func bookAddHandler(c *gin.Context) {
 }
 
 func bookDeleteHandler(c *gin.Context) {
-	param := c.Query("Id")
+	param := c.Query("CategoryId")
 	id, _ := strconv.Atoi(param)
 	fmt.Println(id)
 	DeleteBookById(id)
