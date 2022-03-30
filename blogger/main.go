@@ -1,27 +1,49 @@
 package main
 
 import (
-	"blogger/controller"
-	"blogger/dao/db"
+	//_ "net/http/pprof"
+	"github.com/DeanThompson/ginpprof"
+
 	"github.com/gin-gonic/gin"
-	"github.com/op/go-logging"
+	"github.com/pingguoxueyuan/gostudy/blogger/controller"
+	"github.com/pingguoxueyuan/gostudy/blogger/dal/db"
 )
 
-var log = logging.MustGetLogger("blogger")
-
 func main() {
-	r := gin.Default()
-	driverSql := "root:rootroot@tcp(127.0.0.1:3306)/blogger?parseTime=true&loc=Local"
-	db.InitDB(driverSql)
+	router := gin.Default()
 
-	//加载静态文件
-	r.Static("/static/", "./static")
-	//加载模板
-	r.LoadHTMLGlob("views/*")
+	dns := "root:root@tcp(localhost:3306)/blogger?parseTime=true"
+	err := db.Init(dns)
+	if err != nil {
+		panic(err)
+	}
 
-	// 首页
-	r.GET("/", controller.IndexHandler)
+	ginpprof.Wrapper(router)
+	router.Static("/static/", "./static")
+	router.LoadHTMLGlob("views/*")
 
-	//目前只完成了首页功能，其他页面参考 https://github.com/pingguoxueyuan/gostudy/blob/9e3f839c61/blogger/controller/handler.go
-	r.Run("0.0.0.0:8000")
+	router.GET("/", controller.IndexHandle)
+	//发布文章页面
+	router.GET("/article/new/", controller.NewArticle)
+	//文章提交接口
+	router.POST("/article/submit/", controller.ArticleSubmit)
+	//文章详情页
+	router.GET("/article/detail/", controller.ArticleDetail)
+
+	//文件上传接口
+	router.POST("/upload/file/", controller.UploadFile)
+
+	//留言页面
+	router.GET("/leave/new/", controller.LeaveNew)
+	//关于我页面
+	router.GET("/about/me/", controller.AboutMe)
+
+	//文章评论相关
+	router.POST("/comment/submit/", controller.CommentSubmit)
+
+	//留言相关
+	router.POST("/leave/submit/", controller.LeaveSubmit)
+	//分类下面的文章列表
+	router.GET("/category/", controller.CategoryList)
+	router.Run(":8080")
 }
