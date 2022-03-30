@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
+	"blogger/model"
 )
 
 func init() {

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/pingguoxueyuan/gostudy/blogger/dal/db"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
+	"blogger/dal/db"
+	"blogger/model"
 )
 
 func getCategoryIds(articleInfoList []*model.ArticleInfo) (ids []int64) {

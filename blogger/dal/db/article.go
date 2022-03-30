@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
+	"blogger/model"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
 )
 
 func InsertArticle(article *model.ArticleDetail) (articleId int64, err error) {

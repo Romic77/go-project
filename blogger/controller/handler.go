@@ -8,11 +8,10 @@ import (
 	"path/filepath"
 	"strconv"
 
+	"blogger/logic"
+	"blogger/util"
 	"github.com/gin-gonic/gin"
-	"github.com/pingguoxueyuan/gostudy/blogger/util"
 	"github.com/satori/go.uuid"
-
-	"github.com/pingguoxueyuan/gostudy/blogger/logic"
 )
 
 var (
@@ -180,7 +179,7 @@ func UploadFile(c *gin.Context) {
 
 	log.Println(file.Filename)
 	rootPath := util.GetRootDir()
-	u2, err := uuid.NewV4()
+	u2 := uuid.NewV4()
 	if err != nil {
 		return
 	}

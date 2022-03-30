@@ -3,8 +3,8 @@ package logic
 import (
 	"fmt"
 
-	"github.com/pingguoxueyuan/gostudy/blogger/dal/db"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
+	"blogger/dal/db"
+	"blogger/model"
 )
 
 func InsertLeave(username, email, content string) (err error) {

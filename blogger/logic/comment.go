@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pingguoxueyuan/gostudy/blogger/dal/db"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
+	"blogger/dal/db"
+	"blogger/model"
 )
 
 func InsertComment(comment, author, email string, articleId int64) (err error) {

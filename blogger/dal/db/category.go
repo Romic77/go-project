@@ -3,8 +3,8 @@ package db
 import (
 	"github.com/jmoiron/sqlx"
 
+	"blogger/model"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
 )
 
 func InsertCategory(category *model.Category) (categoryId int64, err error) {

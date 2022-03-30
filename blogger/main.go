@@ -4,15 +4,15 @@ import (
 	//_ "net/http/pprof"
 	"github.com/DeanThompson/ginpprof"
 
+	"blogger/controller"
+	"blogger/dal/db"
 	"github.com/gin-gonic/gin"
-	"github.com/pingguoxueyuan/gostudy/blogger/controller"
-	"github.com/pingguoxueyuan/gostudy/blogger/dal/db"
 )
 
 func main() {
 	router := gin.Default()
 
-	dns := "root:root@tcp(localhost:3306)/blogger?parseTime=true"
+	dns := "root:rootroot@tcp(localhost:3306)/blogger?parseTime=true"
 	err := db.Init(dns)
 	if err != nil {
 		panic(err)

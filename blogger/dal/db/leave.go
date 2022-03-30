@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 
+	"blogger/model"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/pingguoxueyuan/gostudy/blogger/model"
 )
 
 func InsertLeave(leave *model.Leave) (err error) {
