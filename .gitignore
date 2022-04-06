@@ -7,7 +7,7 @@ target/
 *.tar
 *.tar.gz
 
-# maven plugin ignore
+# maven register ignore
 release.properties
 cobertura.ser
 *.gpg
