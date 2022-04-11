@@ -32,11 +32,7 @@ func IndexHandle(c *gin.Context) {
 		fmt.Printf("get category list failed, err:%v\n", err)
 	}
 
-	var data map[string]interface{} = make(map[string]interface{}, 10)
-	data["article_list"] = articleRecordList
-	data["category_list"] = allCategoryList
-
-	c.HTML(http.StatusOK, "views/index.html", data)
+	c.HTML(http.StatusOK, "views/index.html", gin.H{"article_list": articleRecordList, "category_list": allCategoryList})
 }
 
 func CategoryList(c *gin.Context) {
