@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"net/rpc"
+	"net/rpc/jsonrpc"
 )
 
 //
@@ -10,7 +10,8 @@ import (
 // @Description 注释亮一点
 //
 func main() {
-	conn, err := rpc.Dial("tcp", "127.0.0.1:8080")
+	//conn, err := rpc.Dial("tcp", "127.0.0.1:8080")
+	conn, err := jsonrpc.Dial("tcp", "127.0.0.1:8080")
 	if err != nil {
 		fmt.Println("Dial error", err)
 		return
