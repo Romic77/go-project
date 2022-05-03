@@ -1,0 +1,29 @@
+syntax="proto3";
+
+option go_package = "./";
+
+
+package pb;
+
+enum Week{
+  Monday =0; //枚举值 必须从0开是
+  Tuesday=1;
+}
+
+message Student{
+  int32 age=1;  //可以不从1开始，但是不能使用19000-19999之间的数
+  string name=2;
+  People p=3;
+  repeated int32 score=4; //使用repeated定义的是数组
+  //枚举
+  Week w=5;
+  //联合体
+  oneof data{
+    string teacher = 6;
+    string class=7;
+  }
+}
+
+message People{
+  int32 weight=1;
+}

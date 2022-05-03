@@ -10,6 +10,8 @@ require (
 	github.com/nsqio/go-nsq v1.1.0
 	github.com/olivere/elastic/v7 v7.0.31
 	go.etcd.io/etcd v3.3.27+incompatible
+	google.golang.org/grpc v1.33.2
+	google.golang.org/protobuf v1.26.0
 )
 
 require (
@@ -54,8 +56,6 @@ require (
 	golang.org/x/sys v0.0.0-20220405210540-1e041c57c461 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987 // indirect
-	google.golang.org/grpc v1.33.2 // indirect
-	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

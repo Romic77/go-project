@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"go-project/rpc_design"
 	"net"
 	"net/rpc/jsonrpc"
+	"rpc_design"
 )
 
 type World struct {
 }
 
-func (w World) HelloWorld(name string, resp *string) error {
+func (w *World) HelloWorld(name string, resp *string) error {
 	*resp = "你好，" + name
 	return nil
 }

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-project/rpc_design"
+	"rpc_design"
 )
 
 func main() {
