@@ -33,4 +33,8 @@ func main() {
 
 	fmt.Println(result)
 	defer grpcConn.Close()
+
+	//注销id为consul_demo的服务
+	//查看localhost:8500 服务调用完成之后，consul_demo就注销了
+	consulClient.Agent().ServiceDeregister("consul_demo")
 }
